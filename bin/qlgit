@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'cmdparser'
+
+unless ENV['QUICKLISP'] || File.exist?(ENV['QUICKLISP'])
+  puts <<-ERROR
+export QUICKLISP=/path/to/quicklisp/
+ERROR
+end
+
+def validate(repo)
+  !!repo.index('/')
+end
+
+CmdParser.new{
+  on 'install' do |github_repo|
+    if validate(github_repo)
+      project_name = github_repo.split('/')[1]
+      puts `git clone git@github.com:#{github_repo}.git #{ENV['QUICKLISP']}/local-projects/#{project_name}/`       end
+  end
+
+  on ['help','-h'] do
+    print <<-HELP
+Usage:
+  qlgit [Command] [Arguments]
+
+Commands:
+  install [gituser/repo]
+    Install Common Lisp Project
+HELP
+  end
+}.invoke

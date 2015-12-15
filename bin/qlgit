@@ -16,7 +16,8 @@ CmdParser.new{
   on 'install' do |github_repo|
     if validate(github_repo)
       project_name = github_repo.split('/')[1]
-      puts `git clone git@github.com:#{github_repo}.git #{ENV['QUICKLISP']}/local-projects/#{project_name}/`       end
+      puts `git clone git@github.com:#{github_repo}.git #{ENV['QUICKLISP']}/local-projects/#{project_name}/`
+    end
   end
 
   on ['help','-h'] do

@@ -2,7 +2,7 @@
 
 require 'cmdparser'
 
-unless ENV['QUICKLISP'] || File.exist?(ENV['QUICKLISP'])
+unless ENV['QUICKLISP'] && File.exist?(ENV['QUICKLISP'])
   puts <<-ERROR
 export QUICKLISP=/path/to/quicklisp/
 ERROR

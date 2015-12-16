@@ -35,6 +35,9 @@ Usage:
 Commands:
   install [gituser/repo]
     Install Common Lisp Project
+
+  upgrade [gituser/repo]
+    Upgrade Common Lisp Project
 HELP
   end
 }.invoke

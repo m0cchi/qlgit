@@ -23,10 +23,13 @@ CmdParser.new{
   on 'upgrade' do |github_repo|
     if validate(github_repo)
       project_name = github_repo.split('/')[1]
-      puts `cd #{ENV['QUICKLISP']}/local-projects/#{project_name}/ && git fetch && git reset --hard origin/master`
+      repo_dir = "#{ENV['QUICKLISP']}/local-projects/#{project_name}"
+      if File.exist?(repo_dir)
+        puts `cd #{repo_dir}/ && git fetch && git reset --hard origin/master`
+      end
     end
   end
-
+  
   on ['help','-h'] do
     print <<-HELP
 Usage:

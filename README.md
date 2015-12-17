@@ -3,6 +3,7 @@
 # Install
 ```
 export QUICKLISP=/path/to/quicklisp
+# export QUICKLISP=$(ros run --eval '(progn (princ ql:*quicklisp-home*) (exit))')
 gem install qlgit
 ```
 
